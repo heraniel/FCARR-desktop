@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/activities.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/dropmenu.css">
+    <script src="../script/activities.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <a href="https://fcarr.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="../image/Flogo.png" alt="Logo">
+            </a>
+            <span>FCARR ADMIN</span>
+        </div>
+
+        <hr class="logo-line">
+        <nav>
+            <ul>
+                <li><a href="dashboard.html"> <i class='bx bx-home' ></i>Home</a></li>
+                <li><a href="#"><i class='bx bx-search-alt'></i> Admission</a></li>
+                <li><a href="activities.html"><i class='bx bx-calendar'></i> Activities</a></li>
+                <li><a href="contacts.html"><i class='bx bxs-contact'></i>Contacts</a></li>
+                <li><a href="aboutus.html"><i class='bx bx-info-circle'></i>About us</a></li>
+                <li><a href="teachers.html"><i class='bx bx-user'></i> Teachers & Staffs</a></li>
+    
+                
+        </nav>
+        <button class="logout"><i class='bx bx-log-out'></i> Logout</button>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h2 class="admin-name">Dashboard</h2>
+            <div class="admin-info" onclick="toggleProfile()">
+                <img src="../image/user.jpg" alt="admin">
+            </div>
+            <div class="profile-card" id="profileCard">
+                <p><strong>Mrs. Angelita Fronda</strong></p>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+    </div>
+        <div class="activities-container">
+            <div class="activities-header">
+                <h3>Activities</h3>
+                <button class="add-btn" onclick="openModal()">Add Activity</button>
+        </div>
+            <div class="activities-table-container">
+                <table class="activities-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activitiesList">
+                        <!-- activities will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div id="activitiesFormContainer" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Add Activity</h3>
+            <form id="activitiesForm">
+                <label>Title:</label>
+                <input type="text" id="title" required>
+
+                <label>Description:</label>
+                <textarea id="description" required></textarea>
+
+                <label>Image:</label>
+                <input type="file" id="image">
+
+                <div id="previewImageContainer">
+                    <img id="previewImage" src="" width="100" style="display: none;">
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                </div>
+                             
+            </form>
+        </div>
+    </div>
+
+
+    <script src="../script/activities.js"></script>
+    <script src="../script/home.js"></script>
+    <script src="../script/logout.js"></script>
+    <script src="../script/contacts.js"></script>
+    <script src="../script/dropdown.js"></script>
+    <script src="../script/teachers.js"></script>
+</body>
+</html>

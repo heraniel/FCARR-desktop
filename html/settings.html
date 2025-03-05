@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/dropmenu.css">
+    <script src="../script/activities.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <a href="https://fcarr.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="../image/Flogo.png" alt="Logo">
+            </a>
+            <span>FCARR ADMIN</span>
+        </div>
+        <hr class="logo-line">
+        <nav>
+            <ul>
+                <li><a href="dashboard.html"><i class='bx bx-home' ></i>Home</a></li>
+                <li><a href="#"><i class='bx bx-search-alt'></i> Admission</a></li>
+                <li><a href="activities.html"><i class='bx bx-calendar'></i> Activities</a></li>
+                <li><a href="settings.html"><i class='bx bx-cog'></i>Settings</a></li>
+                <li><a href="aboutus.html" class="dropdown-toggle"><i class='bx bx-info-circle'></i> About <i class='bx bx-chevron-down'></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aboutus.html"><i class='bx bx-info-circle'></i>About us</a></li>
+                        <li><a href="#"><i class='bx bx-user'></i> Teachers</a></li>
+                        <li><a href="#"><i class='bx bx-group'></i> Staff</a></li>
+                    </ul>
+                </li>  
+        </nav>
+        <button class="logout"><i class='bx bx-log-out'></i> Logout</button>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h2 class="admin-name">Dashboard</h2>
+                 <div class="admin-info" onclick="toggleProfile()">
+                      <div class="admin-name">Admin</div>
+                      <img src="../image/user.jpg" alt="admin">
+                      <div class="profile-card" id="profileCard">
+                        <p><strong>Mrs. Angelita Fronda</strong></p>
+                        <button class="logout-btn" onclick="logout()">Logout</button>
+                    </div>
+             </div>
+             <div class="settings-container">
+                <h3>Update Contact Information</h3>
+                <form id="settingsForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="siteName">Site Name</label>
+                            <input type="text" id="siteName" value="FCARR Official" placeholder="Enter site name">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" value="+63 912 345 6789" placeholder="Enter phone number">
+                        </div>
+                    </div>
+            
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="faith.christian.academy.rizal@gmail.com" placeholder="Enter email address">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" value="blk6 lot11 phase 1C kasiglahan village San Jose Rodriguez Rizal" placeholder="Enter address">
+                        </div>
+                    </div>
+            
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="facebook">Facebook</label>
+                            <input type="text" id="facebook" value="https://facebook.com/fcarr" placeholder="Enter Facebook link">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="map">Google Map Embed Link</label>
+                            <input type="text" id="map" value="https://goo.gl/maps/example" placeholder="Enter Google Map link">
+                        </div>
+                    </div>
+            
+                    <button type="button" id="publishBtn">Publish</button>
+                </form>
+            </div>
+            
+    <script src="../script/activities.js"></script>
+    <script src="../script/home.js"></script>
+    <script src="../script/logout.js"></script>
+    <script src="../script/settings.js"></script>
+    <script src="../script/dropdown.js"></script>
+    <script src="../script/teachers.js"></script>
+</body>
+</html>

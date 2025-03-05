@@ -1,0 +1,212 @@
+.activities-container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 75px;
+}
+
+.activities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    color: #1e3a5f;
+}
+
+.add-btn {
+    background: #438ceb;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.add-btn:hover {
+    background: #1a6ed8;
+}
+
+.activities-table-container {
+    margin-top: 15px;
+    overflow-x: auto;
+}
+
+.activities-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.activities-table th, .activities-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #cccccc;
+}
+
+.activities-table th {
+    background-color: #1a3c70;
+    color: white;
+}
+
+.activities-table td button {
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.edit-btn {
+    background-color: #1a6ed8;
+    color: white;
+    margin-right: 6px;
+    width: 70px;
+}
+
+.delete-btn {
+    background-color: #c92b1d;
+    color: white;
+    width: 70px;
+}
+
+.edit-btn:hover {
+    background: #135bb5;
+}
+
+.delete-btn:hover {
+    background: #a22016;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal.show {
+display: flex;
+}
+
+.modal-content {
+background: white;
+padding: 20px;
+width: 400px;
+border-radius: 10px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+animation: fadeIn 0.3s ease-in-out;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+
+@keyframes fadeIn {
+from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+}
+to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+}
+
+
+.modal h3 {
+text-align: center;
+color: #254877;
+margin-bottom: 15px;
+font-size: 20px;
+}
+
+
+.modal label {
+font-weight: bold;
+display: block;
+width: 100%;
+text-align: left;
+margin-top: 10px;
+}
+.modal input,
+.modal textarea {
+width: 100%;
+padding: 10px;
+margin-top: 5px;
+border: 1px solid #c6c5c5;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.modal textarea {
+resize: none;
+height: 80px;
+}
+
+.modal input[type="file"] {
+border: none;
+}
+
+
+#previewImageContainer {
+text-align: center;
+margin-top: 10px;
+}
+
+#previewImage {
+width: 100px;
+border-radius: 5px;
+display: none;
+}
+
+.modal-buttons {
+display: flex;
+justify-content: space-between;
+width: 100%;
+margin-top: 15px;
+}
+
+.modal-buttons button {
+flex: 1;
+padding: 10px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+background-color: #438ceb;
+color: white;
+margin-right: 10px;
+}
+
+.modal-buttons button:first-child:hover {
+background-color: #36a3eb;
+}
+
+.modal-buttons button:last-child {
+background-color: #e03e2f;
+color: white;
+}
+
+.modal-buttons button:last-child:hover {
+background-color: #b72a1a;
+}
+
+.show {
+display: flex;
+}
+

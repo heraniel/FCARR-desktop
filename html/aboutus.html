@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/dropmenu.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <script src="../script/activities.js" defer></script>
+    <script src="../script/about.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <a href="https://fcarr.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="../image/Flogo.png" alt="Logo">
+            </a>
+            <span>FCARR ADMIN</span>
+        </div>
+        <hr class="logo-line">
+        <nav>
+            <ul>
+                <li><a href="dashboard.html"><i class='bx bx-home' ></i>Home</a></li>
+                <li><a href="#"><i class='bx bx-search-alt'></i> Admission</a></li>
+                <li><a href="activities.html"><i class='bx bx-calendar'></i> Activities</a></li>
+                <li><a href="contacts.html"><i class='bx bxs-contact'></i>Contacts</a></li>
+                <li><a href="aboutus.html"><i class='bx bx-info-circle'></i>About us</a></li>
+                <li><a href="teachers.html"><i class='bx bx-user'></i> Teachers & Staffs</a></li>
+            </ul>
+        </nav>
+        <button class="logout"><i class='bx bx-log-out'></i> Logout</button>
+    </div>
+    
+    <div class="main-content">
+        <div class="header">
+            <h2 class="admin-name">Dashboard</h2>
+            <div class="admin-info" onclick="toggleProfile()">
+                <img src="../image/user.jpg" alt="admin">
+                <div class="profile-card" id="profileCard">
+                    <p><strong>Mrs. Angelita Fronda</strong></p>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+        <div class="about-container" id="about-container">
+            <h2>About Us Information</h2>
+            <form id="about-form">
+                <label for="about-image">Upload Image:</label>
+                <input type="file" id="about-image" accept="image/*">
+                
+                <label for="about-text">About Us:</label>
+                <textarea id="about-text" rows="4" placeholder="Enter about us description..."></textarea>
+
+                <label for="mission">Mission:</label>
+                <textarea id="mission" rows="4" placeholder="Enter mission statement..."></textarea>
+
+                <label for="vision">Vision:</label>
+                <textarea id="vision" rows="4" placeholder="Enter vision statement..."></textarea>
+                
+                <h3>Upload Academic Images</h3>
+                <input type="file" id="academic-image" accept="image/*">
+                
+                <button type="submit">Publish</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../script/activities.js"></script>
+    <script src="../script/home.js"></script>
+    <script src="../script/logout.js"></script>
+    <script src="../script/contacts.js"></script>
+    <script src="../script/dropdown.js"></script>
+    <script src="../script/about.js"></script>
+    <script src="../script/teachers.js"></script>
+</body>
+</html>

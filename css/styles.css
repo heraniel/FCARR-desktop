@@ -1,0 +1,131 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../image/bgko.jpg') no-repeat center center/cover;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+.container {
+    background: #254877;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 380px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease-in-out;
+}
+
+
+.logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: -23px;
+}
+
+
+h2 {
+    color: white;
+    font-weight: 600;
+}
+
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px 50px 12px 15px; 
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-container input:focus {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+.input-container i {
+    position: absolute;
+    right: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 22px;
+    transition: color 0.3s;
+}
+
+.input-container input:focus + i {
+    color: white;
+}
+
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+button {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.5), rgba(0, 212, 255, 0.5));
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 14px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.7), rgba(0, 212, 255, 0.7));
+    transform: scale(1.05);
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+p a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+p a:hover {
+    text-decoration: underline;
+    color: #1e3a5f;
+}

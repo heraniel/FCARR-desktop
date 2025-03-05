@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/dropmenu.css">
+    <script src="../script/activities.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <a href="https://fcarr.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="../image/Flogo.png" alt="Logo">
+            </a>
+            <span>FCARR ADMIN</span>
+        </div>
+        <hr class="logo-line">
+        <nav>
+            <ul>
+                <li><a href="dashboard.html"><i class='bx bx-home' ></i>Home</a></li>
+                <li><a href="#"><i class='bx bx-search-alt'></i> Admission</a></li>
+                <li><a href="activities.html"><i class='bx bx-calendar'></i> Activities</a></li>
+                <li><a href="contacts.html"><i class='bx bxs-contact'></i>Contacts</a></li>
+                <li><a href="aboutus.html"><i class='bx bx-info-circle'></i>About us</a></li>
+                <li><a href="teachers.html"><i class='bx bx-user'></i> Teachers & Staffs</a></li>
+            </ul>
+        </nav>
+        <button class="logout"><i class='bx bx-log-out'></i> Logout</button>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h2 class="admin-name">Dashboard</h2>
+                 <div class="admin-info" onclick="toggleProfile()">
+                      <img src="../image/user.jpg" alt="admin">
+                      <div class="profile-card" id="profileCard">
+                    <p><strong>Mrs. Angelita Fronda</strong></p>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            </div>
+             <div class="home-container">
+                <h2>Update Home Information</h2>
+                <form id="homeForm" class="home-form">
+                    
+                    <div class="form-group">
+                        <label for="bannerImage">Banner Image</label>
+                        <input type="file" id="bannerImage">
+                        <img id="bannerImagePreview" class="preview" src="" alt="Banner Preview">
+
+
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="heading1">H1 Heading</label>
+                        <input type="text" id="heading1" placeholder="Enter main heading">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="heading2">H2 Heading</label>
+                        <input type="text" id="heading2" placeholder="Enter sub heading">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="paragraph">Paragraph</label>
+                        <textarea id="paragraph" placeholder="Enter paragraph content"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="homeImage">Upload Additional Image</label>
+                        <input type="file" id="homeImage">
+                        <img id="homeImagePreview" class="preview" src="" alt="Image Preview">
+                    </div>
+                    
+                    <button type="button" id="saveHomeBtn" class="save-btn">Save Changes</button>
+                    <script src="../script/home.js" type="module"></script>
+                    
+
+                </form>
+            </div>
+
+
+<script type="module"> 
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+    
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBLN4r7GFyKWmXdUIR3u0wGVYjR9b7z4D0",
+        authDomain: "intflood.firebaseapp.com",
+        databaseURL: "https://intflood-default-rtdb.firebaseio.com",
+        projectId: "intflood",
+        storageBucket: "intflood.appspot.com",
+        messagingSenderId: "1008198051242",
+        appId: "1:1008198051242:web:87f02c0cdcfa6872caf7d3"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    
+    // Form Elements
+    const homeForm = document.getElementById("homeForm");
+    const bannerInput = document.getElementById("bannerImage");
+    const homeImageInput = document.getElementById("homeImage");
+    const heading1Input = document.getElementById("heading1");
+    const heading2Input = document.getElementById("heading2");
+    const paragraphInput = document.getElementById("paragraph");
+    const saveButton = document.getElementById("saveHomeBtn");
+    
+    // Function to Upload Image
+    async function uploadImage(file, path) {
+    if (!file) return null;
+    
+    const storageRef = ref(storage, `home/${path}`); // Always use the same path to overwrite
+
+    await uploadBytes(storageRef, file);
+    return await getDownloadURL(storageRef); // Get the new download URL
+}
+
+    
+    // Save Home Page Data
+    saveButton.addEventListener("click", async () => {
+    try {
+        saveButton.innerText = "Saving...";
+        saveButton.disabled = true;
+
+        const bannerFile = bannerInput.files[0];
+        const homeFile = homeImageInput.files[0];
+
+        // Upload new images, overwriting the old ones
+        const bannerURL = bannerFile ? await uploadImage(bannerFile, "banner") : null;
+        const homeImageURL = homeFile ? await uploadImage(homeFile, "additional") : null;
+
+        // Fetch the existing document to retain old images if no new file is uploaded
+        const homeDocRef = doc(db, "home", "homepageContent");
+        const homeDoc = await getDoc(homeDocRef);
+        const oldData = homeDoc.exists() ? homeDoc.data() : {};
+
+        // Data to save
+        const homeData = {
+            heading1: heading1Input.value,
+            heading2: heading2Input.value,
+            paragraph: paragraphInput.value,
+            bannerImage: bannerURL || oldData.bannerImage || null, // Keep the old image if no new upload
+            homeImage: homeImageURL || oldData.homeImage || null
+        };
+
+        // Save data to Firestore
+        await setDoc(homeDocRef, homeData);
+
+        alert("Home information updated successfully!");
+        
+        saveButton.innerText = "Save Changes";
+        saveButton.disabled = false;
+    } catch (error) {
+        console.error("Error saving home data:", error);
+        alert("Failed to save. Please try again.");
+        saveButton.innerText = "Save Changes";
+        saveButton.disabled = false;
+    }
+});
+
+    
+    // Fetch and Display Home Page Data
+    async function fetchHomeData() {
+        const homeDoc = await getDoc(doc(db, "home", "homepageContent"));
+        if (homeDoc.exists()) {
+            const data = homeDoc.data();
+            heading1Input.value = data.heading1 || "";
+            heading2Input.value = data.heading2 || "";
+            paragraphInput.value = data.paragraph || "";
+    
+            if (data.bannerImage) {
+                document.getElementById("bannerImagePreview").src = data.bannerImage;
+            }
+            if (data.homeImage) {
+                document.getElementById("homeImagePreview").src = data.homeImage;
+            }
+        }
+    }
+    
+    // Load data on page load
+    document.addEventListener("DOMContentLoaded", fetchHomeData);
+    </script>
+
+
+<script>
+    // Function to show image preview
+    function previewImage(input, previewElementId) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(previewElementId).src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Add event listeners to image inputs
+    document.getElementById("bannerImage").addEventListener("change", function () {
+        previewImage(this, "bannerImagePreview");
+    });
+
+    document.getElementById("homeImage").addEventListener("change", function () {
+        previewImage(this, "homeImagePreview");
+    });
+</script>
+
+
+
+    <script src="../script/logout.js"></script>
+  
+</body>
+</html>
